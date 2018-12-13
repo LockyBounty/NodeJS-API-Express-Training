@@ -1,3 +1,6 @@
+////////////-->  NODEJS + API + EXPRESS TRAINING <--///////////////
+
+
 //1.) Structure de base du dossier (qu'on changerra selon nos besoins)
 
  - app/
@@ -110,7 +113,49 @@ mongoose.connect('mongodb://node:node@novus.modulusmongo.net:27017/Iganiq8o'); /
 //That will grab the mongoose package and connect to our remote database hosted by Modulus.
 
 
-//8.) 
+//8.)  Bear Model app/models/bear.js
+
+//Since the model won't be the focus of this tutorial, we'll just create a model and provide our bears with a name field. That's it. Let's create that file and define the model. 
+
+// app/models/bear.js
+
+var mongoose     = require('mongoose');
+var Schema       = mongoose.Schema;
+
+var BearSchema   = new Schema({
+    name: String
+});
+
+module.exports = mongoose.model('Bear', BearSchema);
+
+//With that file created, let's pull it into our server.js so that we can use it within our application. We'll add one more line to that file. 
+
+// server.js
+
+// BASE SETUP
+// =============================================================================
+
+...
+
+var Bear     = require('./app/models/bear');
+
+...
+
+//Now our entire application is ready and wired up so we can start building out our routes. These routes will define our API and the main reason why this tutorial exists. Moving on! 
+
+
+
+//9.)  Express Router and Routes
+
+//We will use an instance of the Express Router to handle all of our routes. Here is an overview of the routes we will require, what they will do, and the HTTP Verb used to access it. 
+
+Route 	HTTP Verb 	Description
+/api/bears 	GET 	Get all the bears.
+/api/bears 	POST 	Create a bear.
+/api/bears/:bear_id 	GET 	Get a single bear.
+/api/bears/:bear_id 	PUT 	Update a bear with new info.
+/api/bears/:bear_id 	DELETE 	Delete a bear. 
+
 
 
 
